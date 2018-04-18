@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Semana03.Models.clientes>
+
+@{
+    ViewBag.Title = "BuscarClientexPais";
+}
+
+<h2 class="text-primary">Buscar Cliente por país</h2>
+
+@using (Html.BeginForm("BuscarClientexPais", "Negocios", FormMethod.Post))
+{
+    <label>País</label>
+    @Html.DropDownList("txtFiltroPais", (SelectList)ViewBag.paises, htmlAttributes: new { @class = "form-control", Style = "margin-bottom : 10px" })
+    <input type="submit" value="Buscar" class="btn btn-primary" style="margin-bottom:20px"/>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paises.NombrePais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fonoCliente)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DirCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paises.NombrePais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fonoCliente)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
